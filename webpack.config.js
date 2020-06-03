@@ -1,4 +1,4 @@
-const { reslove } = require('path');
+const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const optimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
@@ -25,7 +25,7 @@ module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/built.js',
-    path: reslove(__dirname, 'build')
+    path: resolve(__dirname, 'build')
   },
   module: {
     rules: [
@@ -61,25 +61,27 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: [
-            '@babel/preset-env',
-            {
-              // 按需加载
-              useBuiltIns: 'usage',
-              // 指定core-js版本
-              corejs: {
-                version: 3
-              },
-              targets: {
-                chrome: '60',
-                firefox: '60',
-                ie: '9',
-                safari: '10',
-                edge: '17'
+            [
+              '@babel/preset-env',
+              {
+                // 按需加载
+                useBuiltIns: 'usage',
+                // 指定core-js版本
+                corejs: {
+                  version: 3
+                },
+                targets: {
+                  chrome: '60',
+                  firefox: '60',
+                  ie: '9',
+                  safari: '10',
+                  edge: '17'
+                }
               }
-            }
+            ]
           ]
         }
-      }, 
+      },
       {
         test: /\.(png|jpg|jpeg|gif)$/,
         loader: 'url-loader',
